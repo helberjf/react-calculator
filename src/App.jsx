@@ -12,8 +12,15 @@ const App = () => {
   const [operation, setOperation] = useState('');
 
   const handleAddNumber = (num) => {
-    setCurrentNumber(prev => `${(prev === '0' || prev === 'Error') ? '' : prev}${num}`);
-  }
+  setCurrentNumber(prev => {
+    if (prev === 'Error') return num;
+    if (prev === '0' && num !== '.') return num;
+    if (num === '.' && prev.includes('.')) return prev;
+    if (prev.length >= 15) return prev; // limite de caracteres
+    
+    return prev + num;
+  });
+}
 
   const handleAddDecimal = () => {
     setCurrentNumber(prev => {
