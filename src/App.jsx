@@ -37,6 +37,7 @@ const App = () => {
       const sum = Number(firstNumber) + Number(currentNumber);
       setCurrentNumber(String(sum));
       setFirstNumber('0');
+      setOperation('');
     } }
 
   const handleEqual = () => { // if(!firstNumber === '0' && operation) setFirstNumber(Stringn(currentNumber)); set CurrentNumber('0');
@@ -103,7 +104,7 @@ const App = () => {
       setOperation('');
     }
   }
-  const handledeleteNumber = () => {
+  const handleDeleteNumber = () => {
     setCurrentNumber (prev => prev.slice (0, -1));
     if (currentNumber.length === 1) {
       setCurrentNumber ('0');
@@ -125,7 +126,7 @@ const App = () => {
           <Button label="x" onClick= { handleMultiplyNumbers}/>
           <Button label="/" onClick= {handleDivideNumbers}/>
           <Button label="C" onClick= {handleClear}/>
-          <Button label="CE" onClick= { handledeleteNumber}/>
+          <Button label="CE" onClick= { handleDeleteNumber}/>
         </Row>
         <Row>
           <Button label="7" onClick= { () => handleAddNumber ('7')}/>
@@ -149,7 +150,7 @@ const App = () => {
           <Button label="0" onClick= { () => handleAddNumber ('0')}/>
           <Button label="=" onClick= {handleEqual}/>
           <Button label="+" onClick= {handleSumNumbers}/>
-          <Button label="CE" onClick= { handledeleteNumber}/>
+          <Button label="CE" onClick= { handleDeleteNumber}/>
         </Row>
       </Content>
     </Container>
