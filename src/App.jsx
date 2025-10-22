@@ -18,7 +18,7 @@ const App = () => {
     if (num === '.' && prev.includes('.')) return prev;
     if (prev.length >= 15) return prev; // limite de caracteres
     
-    return prev + num;
+    return `${prev}${num}`;
   });
 }
 
