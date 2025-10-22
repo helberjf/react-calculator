@@ -40,7 +40,7 @@ const App = () => {
       setOperation('');
     } }
 
-  const handleEqual = () => { // if(!firstNumber === '0' && operation) setFirstNumber(Stringn(currentNumber)); set CurrentNumber('0');
+  const handleEqual = () => {
       if(firstNumber !== '0' && operation !== '' && currentNumber !== '0') {
         switch(operation) {
           case '+':
