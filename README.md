@@ -1,131 +1,144 @@
-<<<<<<< HEAD
-# React + Vite
+```markdown
+# 🧮 My Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive **React.js** calculator with a clean design and essential math operations.  
+This project was built to demonstrate strong understanding of **componentization**, **state management with React Hooks**, and **front-end architecture best practices**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## React Compiler
+- ⚛️ **React.js** — main library for UI development  
+- 💅 **Styled-components** — modular and reusable styling  
+- 🧠 **React Hooks (useState)** — state control and component behavior  
+- 🌐 **Vite / Create React App** — modern development environment (depending on your setup)  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 💡 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# react-calculator
-first react project
-My Calculator
-Uma calculadora simples feita com React, com operações básicas, suporte a ponto decimal, limpeza total (C), apagar último dígito (CE) e tratamento de divisão por zero.
+✔️ Basic operations: **addition (+)**, **subtraction (-)**, **multiplication (x)**, and **division (/)**  
+✔️ **Division by zero handling** — shows `"Error"` on the display  
+✔️ **Clear (C)** and **Delete last digit (CE)** functions  
+✔️ **Decimal point support**  
+✔️ Displays **current operation history**  
+✔️ Entire logic handled through **React state**, with no external libraries  
 
-Divide por zero exibe “Error”
-Botão CE apaga apenas o último caractere
-Botão C zera tudo
-Histórico mostra o primeiro número e a operação selecionada
-Stack
-React + Hooks
-styled-components
-Vite (supondo, pois a entrada é main.jsx)
-JavaScript (ES2020+)
+---
 
-Estrutura do projeto
+## 🧱 Project Structure
+
+```
 
 src/
-  App.jsx
-  global.jsx
-  styles.jsx
-  main.jsx
-  components/
-    Input/
-      index.jsx
-      styles.jsx
-    Button/
-      index.jsx
-      styles.jsx
-Observações importantes sobre nomes:
+├── components/
+│   ├── Button.jsx       # Reusable button component
+│   ├── Input.jsx        # Calculator display component
+│
+├── styles/
+│   └── index.js         # Global and layout styles (Container, Content, Row, Title)
+│
+├── App.jsx              # Main application logic
+├── global.js            # Global styles (fonts, background, etc.)
+└── main.jsx             # React entry point
 
-No seu texto você citou “pasta input” e “pasta Buttons”, mas no código você importa “Input” e “Button”. Recomendo padronizar como mostrado acima: Input e Button (singular, com inicial maiúscula).
-Você mencionou “Global.jsx”, mas o seu import é “./global”. Mantenha o arquivo como global.jsx (minúsculo) para bater com o import.
-Como rodar
-Pré-requisitos:
+```
 
-Node.js 18+ recomendado
-npm, yarn ou pnpm
-Com npm:
+---
 
-Instale as dependências:
-npm install
-Ambiente de desenvolvimento:
-npm run dev
-Build de produção:
-npm run build
-Preview do build:
-npm run preview
-Com yarn:
+## 🧩 Core Logic (`App.jsx`)
 
-yarn
-yarn dev
-yarn build
-yarn preview
-Com pnpm:
+The calculator relies on **three main states**:
 
-pnpm install
-pnpm dev
-pnpm build
-pnpm preview
-Scripts comuns (Vite)
-dev: sobe o servidor de desenvolvimento com HMR
-build: gera os arquivos otimizados de produção
-preview: serve localmente o build para inspeção
-Funcionalidades
-Operações: adição (+), subtração (-), multiplicação (x), divisão (/)
-Entrada numérica 0–9
-Decimal: ponto “.”
-C: limpa tudo (estado e operação)
-CE: apaga o último dígito do número atual
-Erro: divisão por zero mostra “Error” e permite continuar usando
-Como usar
-Clique em um número para adicioná-lo ao “currentNumber”
-Selecione a operação (+, -, x, /)
-Digite o segundo número
-Pressione “=” para ver o resultado
-Use “.” para adicionar decimal (apenas um por número)
-“C” zera toda a calculadora
-“CE” apaga o último dígito do número atual
-Lógica principal (resumo do App.jsx)
-Estados:
+| State | Description |
+|--------|-------------|
+| `currentNumber` | Current display value (stored as a string for easy digit handling) |
+| `firstNumber` | The first number stored before an operation |
+| `operation` | The selected operator (`+`, `-`, `x`, `/`) |
 
-currentNumber: string do número que você está digitando (ex.: "0", "42", "3.14", "Error")
-firstNumber: primeiro operando armazenado quando você escolhe uma operação
-operation: operação atual escolhida (+, -, x, /)
-Principais handlers:
+The `handleEqual()` function coordinates which math operation to execute based on the selected operator.  
+Error handling ensures the calculator never enters an invalid state.
 
-handleAddNumber(num): concatena dígitos ao número atual
-handleAddDecimal(): adiciona ponto decimal (evita ponto duplicado)
-handleClear(): limpa tudo (zera números e operação)
-handledeleteNumber(): apaga o último dígito (mantém “0” quando esvazia)
-handleSumNumbers(), handleMinusNumbers(), handleMultiplyNumbers(), handleDivideNumbers(): configuram operação ou calculam o resultado quando já há dois operandos
-handleEqual(): executa a operação selecionada
-Tratamento de erros:
+---
 
-Divisão por zero define currentNumber = "Error" e reseta firstNumber/operation
+## 🖥️ User Interface
 
-Roadmap
-Teclado: suportar digitação via teclado (0–9, ., +, -, *, /, Enter, Backspace, Escape)
-Alternar sinal (+/-)
-Porcentagem (%)
-Memória (M+, M-, MR, MC)
-Testes automatizados (unitários e de integração)
-Melhorias de acessibilidade (rótulos ARIA, foco de teclado, contraste)
-Contribuição
-Faça um fork
-Crie uma branch: feature/minha-feature
-Abra um Pull Request descrevendo a mudança
-Licença
-MIT
-Agradecimentos
-Feito com React, styled-components e Vite com o aprendizado no curso de React developer da DIO.
->>>>>>> 0ede1b42564a7e0e192722b784ccab88896687ab
+The UI was designed to be **minimalistic and intuitive**, with proper spacing, typography, and button hierarchy.  
+Buttons are organized into `<Row />` components to mimic the classic calculator layout.
+
+Example layout:
+
+```
+
+
+````
+
+## ⚙️ How to Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/react-calculator.git
+````
+
+2. **Navigate into the project folder**
+
+   ```bash
+   cd react-calculator
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Open in your browser**
+
+   ```
+   http://localhost:5173
+   ```
+
+---
+
+## 🧠 Key Learnings & Best Practices
+
+* Component-based architecture
+* Correct usage of `useState` and asynchronous state updates
+* Logical consistency between multiple operations
+* Clean UI/UX and responsive layout
+* String and number manipulation in React
+* Clean Code and naming conventions
+
+---
+
+## 🧰 Future Improvements
+
+* Add **dark/light mode**
+* Enable **keyboard input support**
+* Add **operation history**
+* Migrate to **TypeScript**
+* Add **unit tests** with Jest and React Testing Library
+
+---
+
+## 👨‍💻 Author
+
+**Helber Soares Mota**
+🚀 Full Stack Developer | Officer at the Brazilian Navy
+📍 Rio de Janeiro, Brazil
+🔗 [LinkedIn](https://www.linkedin.com/in/helbersoares) • [GitHub](https://github.com/helberjf)
+
+---
+
+## 🏁 License
+
+This project is licensed under the **MIT License**.
+You are free to use, modify, and distribute it as you wish.
+
+---
